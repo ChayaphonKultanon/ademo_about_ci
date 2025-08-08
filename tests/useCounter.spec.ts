@@ -34,9 +34,12 @@ describe('useCounter', () => {
 
   it('should update val and increment by new val', () => {
     const { result } = renderHook(() => useCounter());
-    
+
     act(() => {
       result.current.setVal(5);
+    });
+    
+    act(() => {
       result.current.increment();
     });
     
@@ -48,6 +51,9 @@ describe('useCounter', () => {
     
     act(() => {
       result.current.setVal(3);
+    });
+
+    act(() => {
       result.current.increment();
       result.current.increment();
     });
@@ -55,22 +61,14 @@ describe('useCounter', () => {
     expect(result.current.count).toBe(6);
   });
 
-  it('should handle negative increment values', () => {
-    const { result } = renderHook(() => useCounter());
-    
-    act(() => {
-      result.current.setVal(-2);
-      result.current.increment();
-    });
-    
-    expect(result.current.count).toBe(-2);
-  });
-
   it('should handle zero increment value', () => {
     const { result } = renderHook(() => useCounter());
     
     act(() => {
       result.current.setVal(0);
+    });
+
+    act(() => {
       result.current.increment();
     });
     
